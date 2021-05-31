@@ -1,10 +1,8 @@
 package com.smartfoxlabs.fancy.stylish.font.keyboard.ui.components
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.Icon
@@ -16,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -30,10 +29,9 @@ fun RallyTabRow(
     Surface(
         Modifier
             .height(TabHeight)
-            .padding(16.dp)
             .fillMaxWidth()
     ) {
-        Row(Modifier.selectableGroup()) {
+        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             allScreens.forEach { screen ->
                 RallyTab(
                     text = screen.title,
@@ -56,14 +54,16 @@ private fun RallyTab(
     val color = Color(0xA0B1C1)
     val tabTintColor by animateColorAsState(targetValue = if (selected) selectedColor else color)
 
-    Row( modifier = Modifier
+    Column( verticalArrangement = Arrangement.SpaceEvenly, modifier = Modifier
         .height(TabHeight)
+        .background(Color(0x12))
         .selectable(
             selected = selected,
             onClick = onSelected,
             role = Role.Tab
         )) {
         Icon(painter = painterResource(id = icon), contentDescription = null, tint = tabTintColor)
+        
         if (selected) {
 
         }
