@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">FancyFontsCompose</string>
+    <string name="app_name">Fancy Fonts</string>
+    <string name="nav_bar_item_fonts_colored">Colored</string>
+    <string name="nav_bar_item_fonts_calligraphic">Calligraphy</string>
+    <string name="nav_bar_item_fonts_favorites">Favorites</string>
+    <string name="nav_bar_item_settings">Settings</string>
 </resources>
