@@ -38,7 +38,7 @@ fun RallyTabRow(
             .height(TabHeight)
             .fillMaxWidth()
     ) {
-        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
+        Row(horizontalArrangement = Arrangement.SpaceAround) {
             allScreens.forEach { screen ->
                 RallyTab(
                     text = screen.title,
@@ -68,13 +68,13 @@ private fun RallyTab(
             onClick = onSelected,
             role = Role.Tab
         )) {
-        Box(modifier = Modifier.weight(1f)) {
+        Box(modifier = Modifier
+            .weight(2f)) {
             //Icon(painter = painterResource(id = icon), contentDescription = null, tint = tabTintColor)
             Image(bitmap = ImageBitmap.imageResource(id = icon),
                 contentDescription = null,
                 alignment = Alignment.Center,
-                modifier = Modifier
-                    .size(30.dp, 20.dp))
+                modifier = Modifier.align(Alignment.Center))
             //Icon(bitmap = ImageBitmap.imageResource(id = icon), contentDescription = null, tint = tabTintColor)
             Text(
                 text = "text",
