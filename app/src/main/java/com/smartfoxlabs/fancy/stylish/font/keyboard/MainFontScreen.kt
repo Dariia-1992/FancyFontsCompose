@@ -45,13 +45,14 @@ fun MainScreen() {
                 BottomNavigationBar(navController)
             }
         ) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)){
-                MainScreenNavigationConfigurations(navController)
-            }
+            Box(modifier = Modifier.padding(innerPadding)) {
+                    MainScreenNavigationConfigurations(navController)
+                }
         }
-    }
 
+    }
 }
+
 
 @Preview
 @Composable
@@ -68,8 +69,9 @@ fun BottomNavigationBar(navController: NavController) {
         BottomNavigationItemsScreens.Favorites,
         BottomNavigationItemsScreens.Settings)
 
-    BottomNavigation(backgroundColor = BottomNavigationColorPalette.primary,
-        contentColor = BottomNavigationColorPalette.onPrimary) {
+    BottomNavigation(modifier = Modifier.padding(0.dp),
+    backgroundColor = Color.White,
+    contentColor = FontColorPalette.primaryVariant) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         bottomNavigationItems.forEach { screen ->
@@ -113,66 +115,21 @@ private fun MainScreenNavigationConfigurations(navHostController: NavHostControl
     }
 }
 
-
-
-@Composable
-fun BottomNavigationBar() {
-    val bottomNavigationItems = listOf(
-        BottomNavigationItemsScreens.Calligraphy,
-        BottomNavigationItemsScreens.Colored,
-        BottomNavigationItemsScreens.Favorites,
-        BottomNavigationItemsScreens.Settings)
-
-    BottomNavigation(backgroundColor = Color.Gray,
-        contentColor = FontColorPalette.primaryVariant) {
-        bottomNavigationItems.forEach {item ->
-            BottomNavigationItem(
-                icon = {
-                    Icon(
-                        painter = painterResource(id = item.icon),
-                        contentDescription = null
-                    )},
-                label = { Text(text = stringResource(id = item.resourceId)) },
-                selectedContentColor = FontColorPalette.onPrimary,
-                unselectedContentColor = FontColorPalette.primaryVariant,
-                alwaysShowLabel = true,
-                selected = false,
-                onClick = {
-
-                })
-        }
-    }
-}
-
-@Preview
-@Composable
-fun BottomNavigationBarPreview(){
-    BottomNavigationBar()
-}
-
 @Composable
 fun CurrentScreen(titleRes: Int, fontList: MutableList<List<FontDTO>>) {
-    Box(
-        Modifier
-            .background(Color.Green)) {
-        Text(text = stringResource(id = titleRes))
-            //modifier = Modifier
-                //.align(Alignment.TopCenter)
-                //.fillMaxSize())
+    Column(modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally) {
 
+        Text(text = stringResource(id = titleRes))
         val scrollState = rememberLazyListState()
 
-//        LazyColumn(modifier = Modifier
-//            .padding(16.dp)
-//            .background(Color.Blue),
-//        state = scrollState) {
-//            items(10) {
-//                FontItems(fontsList = fontList)
-//                //SelectFontItem(fontName = ) {
-//
-//                //}
-//            }
-//        }
+        LazyColumn(state = scrollState) {
+            items(10) {
+                FontItems(fontsList = fontList)
+            }
+
+        }
+
     }
 }
 
